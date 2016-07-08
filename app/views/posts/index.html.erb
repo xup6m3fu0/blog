@@ -1,0 +1,17 @@
+<h1> The index </h1>
+<%=link_to "Home",root_path%> 
+<%=link_to "Post" ,new_post_path%>
+<hr/> 
+
+<p>
+<% @posts.each do |all| %>
+
+<%=link_to "#{all.title}" ,post_path(all)%> 
+<i><%=link_to "edit" ,edit_post_path(all) %></i>
+<i><%=link_to "delete" ,post_path(all),method: :delete, data:{confirm:"Are you sure?"} %></i><br/>
+<%=all.content %><br/>
+</p>
+
+<%end%>
+
+

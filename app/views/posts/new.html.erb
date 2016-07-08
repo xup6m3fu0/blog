@@ -1,0 +1,17 @@
+<h1>New Post</h1>
+
+<%= form_for @post do |new| %>
+
+<p>
+<%= new.label :title %><br/>
+<%= new.text_field :title %><br/>
+</p>
+
+<p>
+<%= new.label :content %><br/>
+<%= new.text_area :content ,cols:30,rows:10 %><br/>
+</p>
+
+<%= new.submit  "Send" %><br/>
+
+<%end%>
