@@ -55,5 +55,6 @@ Rails.application.routes.draw do
   #   end
   root 'posts#index'
 
-  resources :posts
+  resources :users,only:[:new,:create]
+  resources :posts 
 end

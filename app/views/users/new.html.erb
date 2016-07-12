@@ -1,0 +1,18 @@
+<%= form_for @user do |new| %>
+
+<p>
+User Name :
+<%= new.text_field :name  %> 
+</p>
+
+<p>
+Password :
+<%= new.password_field :password %> 
+</p>
+
+<p>
+<%= new.submit "註冊" %>
+</p>
+
+
+<% end %>

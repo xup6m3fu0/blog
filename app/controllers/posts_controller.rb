@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 		@post=Post.new(post_params)
 
 		if @post.save==true
+			flash[:notice]="suscess to post"
 			redirect_to root_path
 		else
 			redirect_to new_post_path
