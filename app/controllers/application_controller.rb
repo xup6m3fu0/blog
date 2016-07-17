@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end	
 
   def current_user
-  	if login?
+  	if session[:user_id]!=nil 
   		@current_user=User.find(session[:user_id]).name
   	else 
   		flash[:notice]="Inside Error!! , Please Contact Supervisor!"
