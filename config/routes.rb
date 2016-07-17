@@ -58,5 +58,7 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   resources :users,only:[:new,:create]
-  resources :posts 
+  resources :posts do
+    resources :comments
+  end
 end

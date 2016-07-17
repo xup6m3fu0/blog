@@ -1,3 +1,26 @@
+<%=" #{User.find(@post.user_id).name}"%><br/>
 <%=@post.title%><br/>
 <%=@post.content%><br/>
 <%=link_to "home" , root_path %>
+<hr/>
+
+<h1>Comment: </h1>
+
+<% @comments.each do |c| %>
+	<%= " #{User.find(c.user_id).name} :" %>
+	<%= c.content %> 
+
+	<% if  login? && current_user==User.find(c.user_id).name %>
+		<%= link_to "delete" ,post_comment_path(@post,c),method: :delete,data:{confirm: " are you sure?"} %>
+	<% end %>
+	<br/>
+
+<% end %>
+
+<hr/>
+<% if  login?  %>
+	<%= form_for [@post,@comment] do |comment| %>
+	<%= comment.text_area :content ,cols:30 ,rows:1 %>
+	<%= comment.submit "comment" %>
+	<% end %>
+<% end %>

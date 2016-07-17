@@ -6,10 +6,17 @@ class PostsController < ApplicationController
 
 	def show 
 		@post=Post.find(params[:id])
+		@comments=@post.comments
+		@comment=Comment.new
 	end
 
 	def new 
-		@post=Post.new
+		if !!login?
+			@post=Post.new
+		else 
+			flash[:notice]="hey! don't cheating"
+			redirect_to login_path
+		end
 	end
 
 	def edit
@@ -18,13 +25,15 @@ class PostsController < ApplicationController
 
 	def create 
 		@post=Post.new(post_params)
-
+		@post.user_id=session[:user_id]
+		
 		if @post.save==true
 			flash[:notice]="suscess to post"
 			redirect_to root_path
 		else
 			redirect_to new_post_path
 		end
+
 	end
 
 	def update
@@ -45,7 +54,7 @@ class PostsController < ApplicationController
 
 	private 
 		def post_params
-			params.require(:post).permit(:title,:content)
+			params.require(:post).permit(:title,:content,:user_id)
 		end
 
 end
