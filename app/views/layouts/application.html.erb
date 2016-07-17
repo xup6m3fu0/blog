@@ -7,10 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if flash[:notice] %>
+<% if flash[:notice] %> <!-- the error message -->
 	<%= javascript_tag "alert('#{flash[:notice]}')" %>
 	<%= puts "\n" %>
 <%end%>
+
+
 
 <%= yield %>
 
